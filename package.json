@@ -1,1 +1,13 @@
-{}
+{}{
+  "name": "ane-kayit-projesi",
+  "version": "1.0.0",
+  "description": "Butona basanların IP kaydını tutan efsane proje",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "ane": ""
+}
