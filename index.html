@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Okudum ve Kabul Ediyorum</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .small-link {
+      font-size: 10px;
+      color: #666;
+      text-decoration: none;
+    }
+    .small-link:hover {
+      text-decoration: underline;
+    }
+    pre {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="acceptBtn">Okudum ve Kabul Ediyorum</button>
+  <a href="SENİN-LİNKİNİ-BURAYA-KOY" class="small-link">Detaylı Bilgi</a>
+
+  <pre id="result"></pre>
+
+  <script>
+    document.getElementById('acceptBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+
+        // Kullanıcının IP bilgisi ile sahte bir JSON oluşturuyoruz
+        const savedData = {
+          ip: data.ip,
+          acceptedAt: new Date().toISOString()
+        };
+
+        // Ekrana yazdırıyoruz
+        document.getElementById('result').textContent = JSON.stringify(savedData, null, 2);
+
+        // (Gerçek bir sunucu olsaydı burada fetch POST yapardık)
+        console.log("Kaydedildi:", savedData);
+
+      } catch (error) {
+        console.error('IP alınırken hata oluştu:', error);
+      }
+    });
+  </script>
+
+</body>
+</html>
